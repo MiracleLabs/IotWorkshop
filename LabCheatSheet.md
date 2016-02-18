@@ -20,88 +20,96 @@ To download the IBM IoTF Recipe from Github
 https://github.com/ibm-messaging/iot-raspberrypi/releases/download/1.0.2.1/iot_1.0-2_armhf.deb
 ```
 
+To install the IoTF Recipe on your Raspberry Pi
 
-To install the iot package - sudo dpkg -i iot_1.0-2_armhf.deb
+```shell
+sudo dpkg -i iot_1.0-2_armhf.deb
+```
 
-To verify iot process is running - service iot status
+To verify that the IoTF process is running
 
-To get Device ID (MAC ID) - service iot getdeviceid
+```shell
+service iot status
+```
 
-To stop iot Process - sudo service iot stop
+To get the Device Information from the IoTF Config
 
-To create new device.cfg file - sudo nano /etc/iotsample-raspberrypi/device.cfg
+```shell
+service iot getdeviceid
+```
 
-To start iot process - sudo service iot start
+To stop the IoT Process
 
-To install Strongloop - npm install –g strongloop
+```shell
+sudo service iot stop
+```
+To start the IoT Process
 
-To create loopback application - slc loopback 
+```shell
+sudo service iot start
+```
 
-To install loopback connector for connecting to Cloudant - npm install loopback-connector-cloudant
+The following are the Strongloop commands, 
 
-To create loopback application - slc loopback:model
+```shell
+npm install -g strongloop
 
-To run application model - node .
+slc loopback
 
+slc loopback-model
 
+npm install loopback-connector-cloudant
+
+node .
+```
+
+## Device.cfg File for Raspoberry Pi Registration
+
+The following commands needs to be used to create the device.cfg file for the Raspberry Pi to be registered with the IBM Watson Internet of Things Foundation. 
+
+```shell
+sudo nano /etc/iotsample-raspberrypi/device.cfg
+```
+
+The following should be the contents of the file, 
+
+```javascript
+var org = “<your-Organization-ID>”
+var type = “<your-device-Type>” 
+var id = “<your-device-ID>”
+var auth-token = “<your-device-Token>”
+var auth-method = "token"
 ```
 
 ## Code Snippets
 
-The following code snippets will help you in creating the final Consumer Application. 
+### Function Node in Node Red for Final Flow 
 
-### function node for Twitter Flow in Node Red 
-
-```
-msg.temp=msg.payload.d.cputime
-msg.name=msg.payload.d.myname
-msg.payload={"temp":msg.temp,"name":msg.name}
-
-```
-
-### Safe node in Node Red Flow
-
-```
-Temperature({{payload}}) within safe limits
-```
-
-### Critical node in Node Red Flow
-
-```
-Temperature({{payload}}) Critical
+```javascript
+msg.temp = msg.payload.d.cputime
+msg.name = msg.payload.d.myname
+msg.payload = {"temp":msg.temp,"name":msg.name,"loopback__model__name":"<Your Loopback Model Name>"}
 ```
 
 ### datasources.json
 
-```
-
+```javascript
 {
-"db": {
-"name": "db",
-"connector": "memory"
-},
-"cloudant": {
-"database": "rpi-data",
-"username": "fe26cdf0-bd95-485b-aa5e-9862770eb319-bluemix",
-"password": "0cbdea29b0c41a6603ccbee9f5901d278e60ddfb25c3923f1f10103f285f11b6",
-"name": "cloudant",
-"connector": "cloudant"
+   "db": {
+      "name": "db",
+      "connector": "memory"
+   },
+   "cloudant": {
+      "database": "<Your DB Name>",
+      "username": "Credentials from Bluemix",
+      "password": "<Credentials from Bluemix>",
+      "name": "cloudant",
+      "connector": "cloudant"
+   }
 }
-}
-
 ```
 
-### function node in Node Red Flow while storing data in Cloudant DB
-
-```
-msg.temp=msg.payload.d.cputime
-msg.name=msg.payload.d.myname
-msg.payload={"temp":msg.temp,"name":msg.name}
-msg.loopback_mode_name="rpi-model"
-
-```
-
-### Response Body
+### API Response Format(JSON)
 
 ```
 {
