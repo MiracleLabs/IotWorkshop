@@ -17,7 +17,7 @@ Access APIM Portal - https://apim.ibmcloud.com
 To download the IBM IoTF Recipe from Github
 
 ```shell
-https://github.com/ibm-messaging/iot-raspberrypi/releases/download/1.0.2.1/iot_1.0-2_armhf.deb
+curl -LO https://github.com/ibm-messaging/iot-raspberrypi/releases/download/1.0.2.1/iot_1.0-2_armhf.deb
 ```
 
 To install the IoTF Recipe on your Raspberry Pi
