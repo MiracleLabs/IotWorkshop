@@ -1,6 +1,6 @@
-#  Connecting Devices to IBM Bluemix IoT Foundation with Node Red
+#  Miracle's Completely Hands-On IoT Workshop(Part of the Bring IoT Home Series)
 
-This document will have all the links, code snippets and notes that you will need to complete our "Connecting Devices to IBM Bluemix IoT Foundation with Node Red"
+This document will have all the links, code snippets and notes that you will need to complete our "Miracle's Completely Hands-On IoT Workshop"
 
 ## Important Links
 
@@ -14,9 +14,12 @@ Access APIM Portal - https://apim.ibmcloud.com
 
 ## Commands
 
-```shell
+To download the IBM IoTF Recipe from Github
 
-To download iot-raspberrypi recipe - curl -LO https://github.com/ibm-messaging/iot-raspberrypi/releases/download/1.0.2.1/iot_1.0-2_armhf.deb
+```shell
+https://github.com/ibm-messaging/iot-raspberrypi/releases/download/1.0.2.1/iot_1.0-2_armhf.deb
+```
+
 
 To install the iot package - sudo dpkg -i iot_1.0-2_armhf.deb
 
