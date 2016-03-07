@@ -1,6 +1,6 @@
 # Miracle's Completely Hands-On IoT Workshop(Part of the Bring IoT Home Series)
 
-This repository is for the Miracle Innovation Labs IoT Workshop at Interconnect '16. 
+This repository is for the Miracle Innovation Labs IoT Workshop which is part of the Bring IoT Home Series. 
 
 ## Labs Overview
 
