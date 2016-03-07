@@ -74,11 +74,11 @@ sudo nano /etc/iotsample-raspberrypi/device.cfg
 The following should be the contents of the file, 
 
 ```javascript
-var org = “<your-Organization-ID>”
-var type = “<your-device-Type>” 
-var id = “<your-device-ID>”
-var auth-token = “<your-device-Token>”
-var auth-method = "token"
+org = <your-Organization-ID>
+type = <your-device-Type>
+id = <your-device-ID>
+auth-token = <your-device-Token>
+auth-method = token
 ```
 
 ## Code Snippets
@@ -86,8 +86,8 @@ var auth-method = "token"
 ### Function Node in Node Red for Final Flow 
 
 ```javascript
-msg.temp = msg.payload.d.cputime
-msg.name = msg.payload.d.myname
+msg.temp = msg.payload.d.cpuTemp
+msg.name = msg.payload.d.myName
 msg.payload = {"temp":msg.temp,"name":msg.name,"loopback__model__name":"<Your Loopback Model Name>"}
 ```
 
@@ -113,7 +113,8 @@ msg.payload = {"temp":msg.temp,"name":msg.name,"loopback__model__name":"<Your Lo
 
 ```
 {
-   "fuel": "147",
+   "temp": "42.5",
+   "name" : "MyPi"
    "id": "7971a169797d1af8f517808da7fe3653"
 }
 ```
