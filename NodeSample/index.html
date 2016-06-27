@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watson IoTF MQTT Example</title>
+
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="jquery-ui.css">
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.js"></script>
+    <script src="jquery-ui.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#pubBtn").click(function() {
+                console.log("Button was pushed");
+
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:4000/temp",
+                    data: JSON.stringify({"temp": document.getElementById('temp').value}),
+                    contentType: "application/json",
+                    success: function(data) {
+                        console.log(data);
+                        document.getElementById('response').value = data;
+                    },
+                    error: function(data) {
+                        console.log(data);
+                        document.getElementById('response').value = data;
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand whiteText" href="#"><strong>Watson IoTF Node JS Demo v1.0</strong></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="formDiv" class="container" style="padding: 10px; padding-top: 2px; margin-top: 2%">
+            <div class="row">
+                <div class="col-sm-12">
+                    <center>
+                        <h4><strong>Publish Temperature Events</strong></h4>
+                        <div class="form-group has-feedback">
+                            <input type="text" id="temp" class="form-control" placeholder="Enter Sample Temperature" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+                            <i class="glyphicon glyphicon-fire form-control-feedback"></i>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <input type="text" id="response" class="form-control" placeholder="Text Field for Publish Event Response" disabled/>
+                            <i class="glyphicon glyphicon-globe form-control-feedback"></i>
+                        </div>
+                        <div class="form-group">
+                            <button id="pubBtn" class="btn btn-primary" type="submit">Publish to Watson IoTF</button>
+                        </div>
+                    </center>
+                </div>
+            </div>
+    </div>
+</body>
+
+</html>
